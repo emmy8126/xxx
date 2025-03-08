@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="calculator-container">
+        <h1>Investment Calculator</h1>
+        <form id="investment-form">
+            <div class="input-group">
+                <label for="principal">Principal Amount ($):</label>
+                <input type="number" id="principal" required>
+            </div>
+            <div class="input-group">
+                <label for="interest">Annual Interest Rate (%):</label>
+                <input type="number" id="interest" required>
+            </div>
+            <div class="input-group">
+                <label for="time">Time Period (years):</label>
+                <input type="number" id="time" required>
+            </div>
+            <button type="button" id="calculate-btn">Calculate</button>
+        </form>
+        <div class="result">
+            <h2>Future Value of Investment:</h2>
+            <p id="future-value">$0.00</p>
+        </div>
+    </div>
+    
+    <script>
+        // JavaScript to calculate the future value
+        document.getElementById('calculate-btn').addEventListener('click', function() {
+            const principal = parseFloat(document.getElementById('principal').value);
+            const interest = parseFloat(document.getElementById('interest').value);
+            const time = parseFloat(document.getElementById('time').value);
+            
+            if (!isNaN(principal) && !isNaN(interest) && !isNaN(time)) {
+                const futureValue = principal * Math.pow((1 + interest / 100), time);
+                document.getElementById('future-value').textContent = `$${futureValue.toFixed(2)}`;
+            } else {
+                alert("Please fill out all fields with valid values.");
+            }
+        });
+    </script>
+</body>
+</html>
